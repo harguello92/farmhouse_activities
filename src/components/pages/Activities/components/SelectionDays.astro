@@ -1,0 +1,138 @@
+---
+import CardActivity from "@components/ui/CardActivity.astro";
+---
+
+<section>
+  <h2>Actividades</h2>
+  <ul class="scrollDays">
+    <li>
+      <span class="scrollDays__day active" data-app-day data-date="2024-12-27">
+        27
+        <small>Vie</small>
+      </span>
+    </li>
+    <li>
+      <span class="scrollDays__day" data-app-day data-date="2024-12-28">
+        28
+        <small>Sab</small>
+      </span>
+    </li>
+    <li>
+      <span class="scrollDays__day" data-app-day data-date="2024-12-29">
+        29
+        <small>Dom</small>
+      </span>
+    </li>
+    <li>
+      <span class="scrollDays__day" data-app-day data-date="2024-12-30">
+        30
+        <small>Lun</small>
+      </span>
+    </li>
+  </ul>
+
+  <div class="headerSection">
+    <h3>Domingo 22</h3>
+    <a href="">Añadir nueva</a>
+  </div>
+  <ul class="activitiesList">
+    <li>
+      <CardActivity
+        title="Recolecta de tomates"
+        description="Descripción de la actividad 1"
+        schedule="10:00 - 11:00"
+        author="Antonio Langues"
+        participants={4}
+      />
+    </li>
+    <li>
+      <CardActivity
+        title="Recolecta de tomates"
+        description="Descripción de la actividad 1"
+        schedule="10:00 - 11:00"
+        author="Antonio Langues"
+        participants={4}
+      />
+    </li>
+    <li>
+      <CardActivity
+        title="Recolecta de tomates"
+        description="Descripción de la actividad 1"
+        schedule="10:00 - 11:00"
+        author="Antonio Langues"
+        participants={4}
+      />
+    </li>
+  </ul>
+</section>
+
+<script>
+  import { getActivitiesByDay } from "src/services/activities";
+  const buttons = document.querySelectorAll("[data-app-day]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (element) => {
+      const activities = getActivitiesByDay(element.target.dataset.date);
+    });
+  });
+</script>
+
+<style>
+  .activitiesList {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
+    overscroll-behavior-x: none;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .activitiesList li {
+    width: 40vw;
+  }
+
+  .scrollDays {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .scrollDays__day {
+    height: 55px;
+    width: 55px;
+    display: inline-block;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .scrollDays__day.active {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .scrollDays__day:hover:not(.active) {
+    background-color: #eeeeee;
+  }
+
+  .scrollDays__day small {
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .headerSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>

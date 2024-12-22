@@ -1,0 +1,25 @@
+---
+interface Props {
+  label: string;
+  children: any;
+}
+
+const { label } = Astro.props;
+---
+
+<label>
+  {label}
+  <slot />
+</label>
+
+<style>
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+</style>

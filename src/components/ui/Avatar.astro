@@ -1,0 +1,40 @@
+---
+interface Props {
+  name: string;
+  size?: "small" | "medium" | "large";
+}
+
+const { name, size = "medium" } = Astro.props;
+---
+
+<span class={`avatar avatar--${size}`}>{name[0]}</span>
+
+<style>
+  .avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    background-color: #a26ba2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffffff0d;
+  }
+
+  .avatar--small {
+    height: 30px;
+    width: 30px;
+    font-size: 12px;
+  }
+
+  .avatar--medium {
+    height: 40px;
+    width: 40px;
+  }
+
+  .avatar--large {
+    height: 50px;
+    width: 50px;
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+import "@schedule-x/theme-default/dist/index.css";
+---
+
+<div id="app-calendar" class="calendar"></div>
+
+<script>
+  import { createCalendar, createViewDay } from "@schedule-x/calendar";
+
+  const calendar = createCalendar({
+    views: [createViewDay()],
+    events: [
+      {
+        id: 1,
+        title: "Coffee with John",
+        start: "2024-12-21 10:05",
+        end: "2024-12-21 11:06",
+      },
+      {
+        id: 2,
+        title: "Meeting with Jane",
+        start: "2024-12-21 12:05",
+        end: "2024-12-21 13:06",
+      },
+    ],
+  });
+
+  calendar.render(document.getElementById("app-calendar")!);
+</script>
+
+<style>
+  .calendar {
+  }
+</style>
