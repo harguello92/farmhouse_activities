@@ -1,0 +1,82 @@
+---
+import InputGroup from "@components/ui/InputGroup.astro";
+import InputText from "@components/ui/InputText.astro";
+import Button from "@components/ui/Button.astro";
+import InputDate from "@components/ui/InputDate.astro";
+import InputTime from "@components/ui/InputTime.astro";
+import InputTextArea from "@components/ui/InputTextArea.astro";
+---
+
+<h1>Añadir actividad</h1>
+<form id="submit-activity-form" method="POST">
+  <InputGroup label="Nombre">
+    <InputText placeholder="" name="name" id="name" />
+  </InputGroup>
+
+  <InputGroup label="Descripción">
+    <InputTextArea
+      placeholder="Escribe una descripción de la actividad"
+      name="description"
+      id="description"
+      rows={8}
+    />
+  </InputGroup>
+
+  <InputGroup label="Día">
+    <InputDate
+      name="day"
+      id="day"
+      maxDate={new Date().toDateString()}
+      minDate={new Date().toDateString()}
+    />
+  </InputGroup>
+
+  <InputGroup label="Hora">
+    <InputTime name="hour" id="hour" value="10:30" />
+  </InputGroup>
+
+  <Button type="submit">Añadir</Button>
+</form>
+
+<script>
+  import { fetchData } from "src/utils/api";
+  import { navigate } from "astro:transitions/client";
+  import type { ErrorMessageStructure } from "src/api/ErrorMessages";
+
+  const form = document.getElementById(
+    "submit-activity-form"
+  ) as HTMLFormElement;
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+
+    const response = await fetchData("/api/activities", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.errors) {
+      // TODO: Move this to a sentralized error handler
+      response.errors.forEach((error: ErrorMessageStructure) => {
+        const inputElement = document.getElementById(
+          error.attribute
+        ) as HTMLInputElement;
+        const inputElementError =
+          inputElement.parentElement?.querySelector(".app-error-message");
+
+        if (inputElementError) {
+          inputElementError.innerHTML = error.message;
+        }
+
+        inputElement.addEventListener("input", () => {
+          if (inputElementError) {
+            inputElementError.innerHTML = "";
+          }
+        });
+      });
+    } else {
+      navigate("/activities");
+    }
+  });
+</script>

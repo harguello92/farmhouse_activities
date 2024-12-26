@@ -1,21 +1,14 @@
 ---
 interface Props {
-  placeholder: string;
   name: string;
   id: string;
   value?: string;
 }
 
-const { placeholder, name, id, value } = Astro.props;
+const { name, id, value } = Astro.props;
 ---
 
-<input
-  type="text"
-  placeholder={placeholder}
-  name={name}
-  id={id}
-  value={value}
-/>
+<input type="time" name={name} id={id} value={value} />
 
 <style>
   input {

@@ -1,20 +1,22 @@
 ---
 interface Props {
-  placeholder: string;
   name: string;
   id: string;
   value?: string;
+  minDate: string;
+  maxDate: string;
 }
 
-const { placeholder, name, id, value } = Astro.props;
+const { value, name, id, minDate, maxDate } = Astro.props;
 ---
 
 <input
-  type="text"
-  placeholder={placeholder}
-  name={name}
+  type="date"
   id={id}
+  name={name}
   value={value}
+  min={minDate}
+  max={maxDate}
 />
 
 <style>

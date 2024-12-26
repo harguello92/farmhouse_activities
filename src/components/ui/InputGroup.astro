@@ -10,16 +10,21 @@ const { label } = Astro.props;
 <label>
   {label}
   <slot />
+  <small class="app-error-message error-message"></small>
 </label>
 
 <style>
   label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
     font-weight: 600;
     font-size: 0.9rem;
+  }
+
+  .error-message {
+    color: red;
   }
 </style>

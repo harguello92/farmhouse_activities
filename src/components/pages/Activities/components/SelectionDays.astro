@@ -69,10 +69,46 @@ import CardActivity from "@components/ui/CardActivity.astro";
 <script>
   import { getActivitiesByDay } from "src/services/activities";
   const buttons = document.querySelectorAll("[data-app-day]");
+  const activitiesList = document.querySelector("[data-app-activities-list]");
+
+  const controller = new AbortController();
 
   buttons.forEach((button) => {
-    button.addEventListener("click", (element) => {
-      const activities = getActivitiesByDay(element.target.dataset.date);
+    button.addEventListener("click", async (element) => {
+      controller.abort();
+
+      if (!element.target) {
+        return;
+      }
+
+      const activities = await getActivitiesByDay(
+        element.target.dataset.date,
+        controller.signal
+      );
+
+      buttons.forEach((button) => {
+        button.classList.remove("active");
+      });
+
+      element.target.classList.add("active");
+
+      if (activities && activitiesList) {
+        activitiesList.innerHTML = activities
+          .map(
+            (activity) => `
+          <li>
+            <CardActivity
+              title="${activity.title}"
+              description="${activity.description}"
+              schedule="${activity.schedule}"
+              author="${activity.author}"
+              participants=${activity.participants}
+            />
+          </li>
+        `
+          )
+          .join("");
+      }
     });
   });
 </script>

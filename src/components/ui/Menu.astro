@@ -1,13 +1,22 @@
 <nav class="menu">
   <ul class="menu__list">
     <li class="menu__listItem">
-      <a href="/activities">Activities</a>
+      <a href="/activities" class="menu__listItemLink">
+        <i class="ri-list-indefinite menu__listItemLinkIcon"></i>
+        Actividades
+      </a>
     </li>
     <li>
-      <a href="/your-activities">Your activities</a>
+      <a href="/add-activity" class="menu__listItemLink">
+        <i class="ri-add-box-line menu__listItemLinkIcon"></i>
+        Añadir
+      </a>
     </li>
     <li>
-      <a href="/logout">Cerrar sesión</a>
+      <a href="/logout" class="menu__listItemLink">
+        <i class="ri-logout-box-r-line menu__listItemLinkIcon"></i>
+        Salir
+      </a>
     </li>
   </ul>
 </nav>
@@ -26,7 +35,7 @@
     justify-content: space-around;
     align-items: center;
     width: 100vw;
-    height: 70px;
+    height: 60px;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -34,5 +43,19 @@
 
   .menu__listItem {
     padding: 0.3rem;
+  }
+
+  .menu__listItemLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+  }
+
+  .menu__listItemLinkIcon {
+    font-size: 1.6rem;
   }
 </style>
