@@ -9,7 +9,6 @@ export const POST: APIRoute = async ({ request }) => {
   const day = data.get("day");
   const hour = data.get("hour");
 
-  console.log("desc", data.get("description"))
   const errorMessagesHandler = new ErrorMessages();
 
   if (!name) {

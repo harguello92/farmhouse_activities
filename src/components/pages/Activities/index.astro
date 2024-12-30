@@ -1,11 +1,21 @@
 ---
+import { getEvent } from "src/services/events";
 import HeroHeading from "./components/HeroHeading.astro";
 import MostPopularActivities from "./components/MostPopularActivities.astro";
-import SelectionDays from "./components/SelectionDays.astro";
+import SelectionDays from "./components/SelectionDays";
+import { getArrayDaysFromTwoDates } from "src/utils/dates";
+
+const { activities, from, to } = await getEvent("qwe-wqeqe-weqe-qeqe");
+const eventDaysArray = getArrayDaysFromTwoDates(from, to);
+const currentDay = eventDaysArray[0];
 ---
 
 <div class="container">
   <HeroHeading />
   <MostPopularActivities />
-  <SelectionDays />
+  <SelectionDays
+    activities={activities}
+    eventDays={eventDaysArray}
+    currentDay={currentDay}
+  />
 </div>

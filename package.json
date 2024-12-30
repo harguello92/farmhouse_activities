@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@astrojs/node": "^9.0.0",
+    "@astrojs/react": "^4.1.2",
     "@astrojs/ts-plugin": "^1.10.4",
     "@astrojs/vercel": "^8.0.1",
     "@schedule-x/calendar": "^2.12.1",
     "@schedule-x/events-service": "^2.12.1",
     "@schedule-x/theme-default": "^2.12.1",
     "astro": "^5.1.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "remixicon": "^4.6.0"
   }
 }

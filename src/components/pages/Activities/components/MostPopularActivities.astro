@@ -1,5 +1,5 @@
 ---
-import CardActivity from "@components/ui/CardActivity.astro";
+import CardActivity from "@components/ui/CardActivity";
 import "@schedule-x/theme-default/dist/index.css";
 ---
 
@@ -10,18 +10,32 @@ import "@schedule-x/theme-default/dist/index.css";
       <CardActivity
         title="Recolecta de tomates"
         description="Descripción de la actividad 1"
-        schedule="10:00 - 11:00"
-        author="Antonio Langues"
-        participants={4}
+        from={new Date()}
+        to={new Date()}
+        owner={{
+          id: 12,
+          name: "Antonio Langues",
+          surname: "García",
+          image: "https://randomuser.me/api/portraits",
+          email: "ok@gmail.com",
+        }}
+        participantsCount={4}
       />
     </li>
     <li>
       <CardActivity
         title="Recolecta de tomates"
         description="Descripción de la actividad 1"
-        schedule="10:00 - 11:00"
-        author="Antonio Langues"
-        participants={4}
+        from={new Date()}
+        to={new Date()}
+        owner={{
+          id: 12,
+          name: "Antonio Langues",
+          surname: "García",
+          image: "https://randomuser.me/api/portraits",
+          email: "ok@gmail.com",
+        }}
+        participantsCount={4}
       />
     </li>
   </ul>

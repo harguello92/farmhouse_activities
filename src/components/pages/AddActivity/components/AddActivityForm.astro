@@ -1,7 +1,7 @@
 ---
 import InputGroup from "@components/ui/InputGroup.astro";
 import InputText from "@components/ui/InputText.astro";
-import Button from "@components/ui/Button.astro";
+import Button from "@components/ui/Button";
 import InputDate from "@components/ui/InputDate.astro";
 import InputTime from "@components/ui/InputTime.astro";
 import InputTextArea from "@components/ui/InputTextArea.astro";
@@ -56,7 +56,7 @@ import InputTextArea from "@components/ui/InputTextArea.astro";
       body: formData,
     });
 
-    if (response.errors) {
+    if (response.errors.length > 0) {
       // TODO: Move this to a sentralized error handler
       response.errors.forEach((error: ErrorMessageStructure) => {
         const inputElement = document.getElementById(
@@ -76,6 +76,7 @@ import InputTextArea from "@components/ui/InputTextArea.astro";
         });
       });
     } else {
+      // TODO: Add snackbar success message
       navigate("/activities");
     }
   });

@@ -10,12 +10,8 @@ interface Props {
 const { placeholder, name, id, value, rows } = Astro.props;
 ---
 
-<textarea
-  name="textarea"
-  name={name}
-  id={id}
-  rows={rows || 3}
-  placeholder={placeholder}>{value}</textarea
+<textarea name={name} id={id} rows={rows || 3} placeholder={placeholder}
+  >{value}</textarea
 >
 
 <style>

@@ -1,14 +1,20 @@
----
+
 interface Props {
   type: "submit" | "reset" | "button" | null | undefined;
+  children: React.ReactNode;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const { type } = Astro.props;
----
 
-<button type={type}>
-  <slot />
-</button>
+const Button = ({ type, children, onClick }: Props) => (
+  <button type={type || "button"} onClick={onClick}>
+    {children}
+  </button>
+);
+
+export default Button;
+
+/*
 
 <style>
   button {
@@ -21,3 +27,5 @@ const { type } = Astro.props;
     font-size: 1rem;
   }
 </style>
+
+*/
